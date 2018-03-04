@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ESClientConfig {
 	
+	
 	@Bean
 	public RestClient restClient(@Value("${host}") String host, @Value("${port}") int port){
 		RestClientBuilder restClientBuilder = RestClient.builder(new HttpHost(host, port, "http"));

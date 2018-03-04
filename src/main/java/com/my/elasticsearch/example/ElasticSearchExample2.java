@@ -34,6 +34,9 @@ public class ElasticSearchExample2 {
 		Map<String, String> params = Collections.singletonMap("pretty", "true");
 		restClient.performRequestAsync("GET", "/posts/doc/1", params,   new Listener());
 		
+		
+		
+		
 		String jsonString = "{" +
 		        "\"user\":\"kimchy\"," +
 		        "\"postDate\":\"2013-01-30\"," +
