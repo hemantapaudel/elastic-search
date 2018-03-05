@@ -176,7 +176,7 @@ public class LowLevelClientExample {
 		
 		HttpEntity<String> request = new HttpEntity<String>(json,getHeaders());
 		RestTemplate restTemplate = new RestTemplate();
-		String uri = "http://localhost:9200/dummyindex/dummytype/101/_update";
+		String uri = "http://localhost:9200/dummyindex/dummytype/101/_update?refresh=true";
 		
 		ResponseEntity<String> postForEntity = restTemplate.postForEntity(uri, request, String.class);
 		System.out.println(postForEntity.getBody());

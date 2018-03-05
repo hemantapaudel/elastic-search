@@ -112,7 +112,7 @@ public class UpsertExample {
 		
 		
 		
-		UpdateRequest request = new UpdateRequest("posts","doc","123456");
+	/*	UpdateRequest request = new UpdateRequest("posts","doc","123456");
 		Script inline = new Script(ScriptType.INLINE, "painless","ctx._source.count +=params.count", params);  
 		request.script(inline);
 		String json = getDummy();
@@ -120,14 +120,21 @@ public class UpsertExample {
 		
 		
 		
-		request.upsert(new IndexRequest("posts","doc","123456").source(json));
+		request.upsert(new IndexRequest("posts","doc","123456").source(json));*/
+		
+		IndexRequest index = new IndexRequest(
+		        "posts", 
+		        "doc",  
+		        "123456");
+		index.source(new Gson().toJson(e1), XContentType.JSON);
+		
 		
 		BulkRequest bulkRequest = new BulkRequest();
-		//bulkRequest.add(request);
+		bulkRequest.add(index);
 		
 		Header[] headers = new Header[]{new BasicHeader("Content-Type", "application/json")};
 		bulkRequest.setRefreshPolicy(RefreshPolicy.IMMEDIATE);
-		//BulkResponse response = client.bulk(bulkRequest, headers);
+		BulkResponse response = client.bulk(bulkRequest, headers);
 		//client.close();
 		
 		//System.out.println(response);
@@ -137,16 +144,13 @@ public class UpsertExample {
 		
 		
 		
-		IndexRequest index = new IndexRequest(
-		        "posts", 
-		        "doc",  
-		        "123456");
-		
-		index.source(json, XContentType.JSON);
 		
 		
 		
-		client.index(index, headers);
+		
+		
+		
+	
 		
 				
 		
